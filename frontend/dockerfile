@@ -1,0 +1,21 @@
+# Use official Node.js image
+FROM node:18  
+
+# Set the working directory
+WORKDIR /app  
+
+# Copy package.json and install dependencies
+COPY package*.json ./  
+RUN npm install  
+
+# Copy all source files
+COPY . .  
+
+# Build the frontend (for React/Vite)
+RUN npm run build  
+
+# Expose the frontend port
+EXPOSE 3000  
+
+# Start the frontend
+CMD ["npm", "start"]
